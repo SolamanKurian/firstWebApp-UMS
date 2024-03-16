@@ -1,0 +1,36 @@
+
+<%-include('../layouts/header.ejs') %>
+
+<div class="container">
+  <h2 class="text-center">Welcome <%= admin.name %></h2>
+
+  <div class="row justify-content-center mt-4">
+    <a href="/admin/dashboard" class="btn btn-primary">Dashboard</a>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-md-4">
+      <img src="/userimages/<%= admin.image %>" alt="<%= admin.image %>" class="img-fluid rounded-circle" width="150px" height="150px">
+    </div>
+    <div class="col-md-8">
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>Email</th>
+            <td><%= admin.email %></td>
+          </tr>
+          <tr>
+            <th>Mobile</th>
+            <td><%= admin.mobile %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <a href="/admin/logout" class="btn btn-danger">Logout</a>
+  </div>
+</div>
+
+<%-include('../layouts/footer.ejs') %>

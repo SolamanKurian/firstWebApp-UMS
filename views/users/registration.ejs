@@ -1,0 +1,95 @@
+
+<%- include('../layouts/header.ejs') %>
+
+<div class="container">
+
+  <h1 class="text-center mb-10">Register</h1>
+
+  <form action="" method="post" enctype="multipart/form-data" id="form" class="row g-3 needs-validation" novalidate>
+
+    <div class="col-md-10">
+      <label for="name" class="form-label">Name</label>
+      <input type="text" name="name" id="name" class="form-control" placeholder="Enter name" required>
+      <div class="invalid-feedback">Please enter your name.</div>
+    </div>
+
+    <div class="col-md-10">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" name="email" id="email" class="form-control" placeholder="Enter email" required>
+      <div class="invalid-feedback">Please enter a valid email address.</div>
+    </div>
+
+    <div class="col-md-10">
+      <label for="mno" class="form-label">Mobile Number</label>
+      <input type="text" name="mno" id="mno" class="form-control" placeholder="Enter mobile number" required>
+      <div class="invalid-feedback">Please enter your mobile number.</div>
+    </div>
+
+    <div class="col-md-10">
+      <label for="image" class="form-label">Image</label>
+      <input type="file" name="image" id="image" class="form-control" required>
+      <div class="invalid-feedback">Please select an image.</div>
+    </div>
+
+    <div class="col-md-10">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" name="password" id="password" class="form-control" placeholder="Enter password" required>
+      <div class="invalid-feedback">Please enter a password.</div>
+    </div>
+    <div id="error" class="col-md-12 text-center mt-3" style="color: rgb(231, 16, 16);"></div>
+    <% if(locals.message) { %>
+        <h4 class="text-center mt-4"><%= message %></h4>
+      <% } %>
+      
+      <%- include('../layouts/footer.ejs') %>
+    <div class="col-md-12 text-center">
+      <button type="submit" class="btn btn-primary">Register</button>
+    </div>
+
+    
+
+  </form>
+
+</div>
+
+
+
+<script>
+
+let form=document.getElementById('form')
+let error=document.getElementById('error')
+
+form.addEventListener('submit',(event)=>{
+
+    event.preventDefault();
+    const name = form.elements['name'].value.trim();
+    const email = form.elements['email'].value.trim();
+    const phone = form.elements['mno'].value.trim();
+    const password = form.elements['password'].value.trim();
+
+    if (!/^[a-zA-Z ]+$/.test(name)) {
+      error.innerText='Name should only contain letters and spaces';
+      return;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        error.innerText='Please enter a valid email address';
+      return;
+    }
+
+    if (!/^\d{10}$/.test(phone)) {
+        error.innerText='Phone number should be 10 digits long and contain only numbers';
+      return;
+    }
+
+    if (password.length <= 7) {
+        error.innerText='Password should be at least 8 characters long';
+      return;
+    }
+
+    form.submit();
+})
+
+
+
+</script>

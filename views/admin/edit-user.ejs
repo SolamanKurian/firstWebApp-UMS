@@ -1,0 +1,40 @@
+
+
+<%- include('../layouts/header.ejs') %>
+
+<div class="container">
+
+  <h1 class="text-center mb-4">Edit User</h1>
+
+  <form action="" method="post" class="row g-3 needs-validation" novalidate>
+
+    <div class="col-md-10">
+      <label for="name" class="form-label">Name</label>
+      <input type="text" name="name" id="name" value="<%= user.name %>" class="form-control" placeholder="Enter name" required>
+      <div class="invalid-feedback">Please enter a name.</div>
+    </div>
+
+    <div class="col-md-10">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" name="email" id="email" value="<%= user.email %>" class="form-control" placeholder="Enter email" required>
+      <div class="invalid-feedback">Please enter a valid email address.</div>
+    </div>
+
+    <div class="col-md-10">
+      <label for="mno" class="form-label">Mobile Number</label>
+      <input type="text" name="mno" id="mno" value="<%= user.mobile %>" class="form-control" placeholder="Enter mobile number" required>
+      <div class="invalid-feedback">Please enter a mobile number.</div>
+    </div>
+
+    <input type="hidden" name="id" value="<%= user._id %>">
+
+    <div class="col-md-12 text-center">
+      <button type="submit" class="btn btn-primary">Update User</button><br><br>
+      <a href="/admin" class="btn btn-secondary">Back to Dashboard</a>
+    </div>
+
+  </form>
+
+</div>
+
+<%-include('../layouts/footer.ejs') %>

@@ -1,0 +1,93 @@
+
+
+ <%- include('../layouts/header.ejs') %>
+
+ <div class="container">
+   <h1 class="mb-4">Add New User</h1>
+ 
+   <form action="" method="post" enctype="multipart/form-data" id="form" class="needs-validation" novalidate>
+ 
+     <div class="mb-3">
+       <label for="name" class="form-label">Name</label>
+       <input type="text" name="name" id="name" class="form-control" placeholder="Enter name" required>
+       <div class="invalid-feedback">Please enter your name.</div>
+     </div>
+ 
+     <div class="mb-3">
+       <label for="email" class="form-label">Email</label>
+       <input type="email" name="email" id="email" class="form-control" placeholder="Enter email" required>
+       <div class="invalid-feedback">Please enter a valid email address.</div>
+     </div>
+ 
+     <div class="mb-3">
+       <label for="mno" class="form-label">Mobile Number</label>
+       <input type="text" name="mno" id="mno" class="form-control" placeholder="Enter mobile number" required>
+       <div class="invalid-feedback">Please enter your mobile number.</div>
+     </div>
+ 
+     <div class="mb-3">
+       <label for="image" class="form-label">Image</label>
+       <input type="file" name="image" id="image" class="form-control" required>
+       <div class="invalid-feedback">Please select an image.</div>
+     </div>
+ 
+     <div class="mb-3">
+       <label for="password" class="form-label">Password</label>
+       <input type="password" name="password" id="password" class="form-control" placeholder="Enter password" required>
+       <div class="invalid-feedback">Please enter a password.</div>
+     </div>
+ 
+     <div id="error" class="mb-3" style="color: red;"></div>
+ 
+     <button type="submit" class="btn btn-primary">Register</button>
+ 
+   </form>
+ 
+   <% if(locals.message) { %>
+     <h4 class="mt-4"><%= message %></h4>
+   <% } %>
+ 
+   <a href="/admin/dashboard" class="btn btn-secondary mt-3">Back</a>
+ </div>
+ 
+ <%-include('../layouts/footer.ejs') %>
+ 
+<script>
+
+    let form=document.getElementById('form')
+    let error=document.getElementById('error')
+    
+    form.addEventListener('submit',(event)=>{
+    
+        event.preventDefault();
+        const name = form.elements['name'].value.trim();
+        const email = form.elements['email'].value.trim();
+        const phone = form.elements['mno'].value.trim();
+        const password = form.elements['password'].value.trim();
+    
+        if (!/^[a-zA-Z ]+$/.test(name)) {
+          error.innerText='Name should only contain letters and spaces';
+          return;
+        }
+    
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            error.innerText='Please enter a valid email address';
+          return;
+        }
+    
+        if (!/^\d{10}$/.test(phone)) {
+            error.innerText='Phone number should be 10 digits long and contain only numbers';
+          return;
+        }
+    
+        if (password.length <= 7) {
+            error.innerText='Password should be at least 8 characters long';
+          return;
+        }
+    
+        form.submit();
+    })
+    
+    
+    
+    </script>

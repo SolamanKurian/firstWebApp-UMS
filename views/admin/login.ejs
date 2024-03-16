@@ -1,0 +1,47 @@
+<%- include('../layouts/header.ejs') %>
+<div class="container">
+<h2>Admin Login</h2>
+
+<% 
+
+if(typeof message !== "undefined"){%>
+
+
+<h3><%=message%></h3>
+
+<% }%>
+
+<form action="" method="post" id="form">
+
+    <input type="text" name="email" placeholder="Enter your email">
+    <br><br>
+
+    <input type="password" name="password" placeholder="Enter your password">
+    <br><br>
+    <input type="submit" value="Login">
+    <div id="error"></div>
+
+</form>
+</div>
+
+<%- include('../layouts/footer.ejs') %>
+
+<script>
+    let form=document.getElementById('form')
+    let error=document.getElementById('error')
+    
+    form.addEventListener('submit',(event)=>{
+    
+        event.preventDefault();
+        const email = form.elements['email'].value.trim();
+        const password = form.elements['password'].value.trim();
+    
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            error.innerText='Please enter a valid email address';
+          return;
+        }
+        form.submit();
+    })
+    
+    
+    </script>

@@ -1,0 +1,40 @@
+<%- include('../layouts/header.ejs') %>
+
+<div class="container">
+<h1>log in </h1>
+<form action="/login" method="post" id="form">
+    <%if(locals.message){%>
+        <h4><%= message %></h4>
+     <%}%>
+
+<input type="text" name="email"  placeholder="Enter your email" ><br><br>
+<input type="password" name="password"  placeholder="Enter your password"><br><br>
+<input type="submit" value="Login">
+<a href="/register">Register</a>
+<div id="error"></div>
+
+
+</form>
+</div>
+<script>
+    let form=document.getElementById('form')
+    let error=document.getElementById('error')
+    
+    form.addEventListener('submit',(event)=>{
+    
+        event.preventDefault();
+        const email = form.elements['email'].value.trim();
+        const password = form.elements['password'].value.trim();
+    
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            error.innerText='Please enter a valid email address';
+          return;
+        }
+        form.submit();
+    })
+    
+    
+    </script>
+
+<%- include('../layouts/footer.ejs') %>
+
