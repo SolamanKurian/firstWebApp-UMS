@@ -108,7 +108,7 @@ const adminDashboard= async(req,res)=>{
         }
         const userData= await User.find({is_admin:0,$or:[{name:{$regex:".*"+search+".*",$options:"i"}},
     {email:{$regex:".*"+search+".*",$options:"i"}}]})
-        res.render('dashboard',{users:userData})
+        res.render('dashboard',{users:userData,srch:search})
     } catch (error) {
         console.log(error.message)
     }
@@ -164,6 +164,7 @@ try {
 
 
 }
+
 //method to render user edit page for admin
 
 const edituserLoad=async(req,res)=>{
@@ -187,6 +188,7 @@ try {
 }
 
 }
+
 //method to update user
 
 const updateUser= async(req,res)=>{

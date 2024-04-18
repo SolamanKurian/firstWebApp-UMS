@@ -8,12 +8,25 @@
   <h4 class="text-center mt-3 mb-4">Dashboard</h4>
 
   <div class="row mb-3">
-    <div class="col-md-6">
-      <form class="d-flex">
-        <input type="search" class="form-control me-2" placeholder="Search" name="search">
-        <button type="submit" class="btn btn-primary">Search</button>
-      </form>
-    </div>
+    <% if(locals.srch){ %>
+      <div class="col-md-6">
+        <form class="d-flex" id="srch_form">
+          <input type="search" class="form-control me-2" placeholder="<%=srch%>" name="search" id="searchInput">
+          <button type="submit" name="sr" class="btn btn-primary">Search
+          </button>
+        </form>
+      </div>
+    <% } else { %>
+
+      <div class="col-md-6">
+        <form class="d-flex" id="srch_form">
+          <input type="search" class="form-control me-2" placeholder="Search" name="search" id="searchInput">
+          <button type="submit" name="sr" class="btn btn-primary">Search
+          </button>
+        </form>
+      </div>
+   <% } %>
+
     
     <div class="col-md-6 text-end">
       <a href="/admin/new-user" class="btn btn-success">Add New User</a>
@@ -42,7 +55,7 @@
             <td><img src="/userimages/<%= users[i].image %>" alt="<%= users[i].image %>" width="150px" height="150px"></td>
             <td>
               <a href="/admin/edit-user?id=<%= users[i]._id %>" class="btn btn-primary btn-sm">Edit</a>
-              <a href="/admin/delete-user?id=<%= users[i]._id %>" class="btn btn-danger btn-sm">Delete</a>
+              <a href="/admin/delete-user?id=<%= users[i]._id %>" onclick="return confirm('Are you sure?')" class="btn btn-danger btn-sm">Delete</a>
             </td>
           </tr>
         <% } %>
@@ -58,3 +71,22 @@
 
 </div>
 <%-include('../layouts/footer.ejs') %>
+
+<script>
+  let srch = document.getElementById('srch_form')
+  srch.addEventListener('submit',(event)=>{
+
+    // event.preventDefault();
+
+    let searchValue = srch.elements['sr'].value;
+    srch.querySelector('searchInput').placeholder = searchValue;
+
+    // setTimeout(() => srch.submit(), 0);
+
+  })
+</script> 
+
+
+
+
+

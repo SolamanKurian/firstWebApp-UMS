@@ -77,8 +77,8 @@ form.addEventListener('submit',(event)=>{
       return;
     }
 
-    if (!/^\d{10}$/.test(phone)) {
-        error.innerText='Phone number should be 10 digits long and contain only numbers';
+    if (!/^[1-9]\d{9}$/.test(phone)) {
+        error.innerText='Enter a valid Phone Number';
       return;
     }
 
